@@ -1,6 +1,8 @@
 # Vagrant Cloudstack Provider
 
 [![Build Status](https://travis-ci.org/klarna/vagrant-cloudstack.png?branch=master)](https://travis-ci.org/klarna/vagrant-cloudstack)
+[![Gem Version](https://badge.fury.io/rb/vagrant-cloudstack.png)](http://badge.fury.io/rb/vagrant-cloudstack)
+[![Dependency Status](https://gemnasium.com/klarna/vagrant-cloudstack.png)](https://gemnasium.com/klarna/vagrant-cloudstack)
 
 This is a fork of [mitchellh AWS Provider](https://github.com/mitchellh/vagrant-aws/).
 
@@ -52,16 +54,18 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :cloudstack do |cloudstack, override|
     cloudstack.host = "cloudstack.local"
+    cloudstack.path = "/client/api"
     cloudstack.port = "8080"
     cloudstack.scheme = "http"
     cloudstack.api_key = "AAAAAAAAAAAAAAAAAAA"
     cloudstack.secret_key = "AAAAAAAAAAAAAAAAAAA"
 
-    cs.template_id = "AAAAAAAAAAAAAAAAAAA"
-    cs.service_offering_id = "AAAAAAAAAAAAAAAAAAA"
-    cs.network_id = "AAAAAAAAAAAAAAAAAAA"
-    cs.zone_id = "AAAAAAAAAAAAAAAAAAA"
-    cs.project_id = "AAAAAAAAAAAAAAAAAAA"
+    cloudstack.template_id = "AAAAAAAAAAAAAAAAAAA"
+    cloudstack.service_offering_id = "AAAAAAAAAAAAAAAAAAA"
+    cloudstack.network_id = "AAAAAAAAAAAAAAAAAAA"
+    cloudstack.zone_id = "AAAAAAAAAAAAAAAAAAA"
+    cloudstack.project_id = "AAAAAAAAAAAAAAAAAAA"
+    cloudstack.network_type = "Advanced" # or "Basic"
   end
 end
 ```
@@ -90,6 +94,7 @@ provider-specific configuration for this provider.
 This provider exposes quite a few provider-specific configuration options:
 
 * `host` - Cloudstack api host
+* `path` - Cloudstack api path
 * `port` - Cloudstack api port
 * `scheme` - Cloudstack api scheme _(default: http)_
 * `api_key` - The api key for accessing Cloudstack
@@ -98,10 +103,15 @@ This provider exposes quite a few provider-specific configuration options:
   to become "ready" in Cloudstack. Defaults to 120 seconds.
 * `domain_id` - Domain id to launch the instance into
 * `network_id` - Network uuid that the instance should use
+* `network_type` - CloudStack Network Type(default: Advanced)
 * `project_id` - Project uuid that the instance should belong to 
 * `service_offering_id`- Service offering uuid to use for the instance
 * `template_id` - Template uuid to use for the instance
 * `zone_id` - Zone uuid to launch the instance into
+* `keypair` - SSH keypair name
+* `pf_ip_address_id` - IP address ID for port forwarding rule
+* `pf_public_port` - Public port for port forwarding rule
+* `pf_private_port` - Private port for port forwarding rule
 
 These can be set like typical provider-specific configuration:
 

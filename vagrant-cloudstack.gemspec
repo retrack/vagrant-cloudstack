@@ -5,17 +5,17 @@ Gem::Specification.new do |s|
   s.name          = "vagrant-cloudstack"
   s.version       = VagrantPlugins::Cloudstack::VERSION
   s.platform      = Gem::Platform::RUBY
-  s.authors       = "Mitchell Hashimoto"
-  s.email         = "mitchell@hashicorp.com"
-  s.homepage      = "http://www.vagrantup.com"
+  s.license       = "MIT"
+  s.authors       = ["Mitchell Hashimoto", "Carl Loa Odin", "Tor-Åke Fransson", "Olle Lundberg", "Roeland Kuipers", "u-ichi", "atsaki"]
+  s.email         = "carlodin@gmail.com"
+  s.homepage      = "https://github.com/klarna/vagrant-cloudstack/"
   s.summary       = "Enables Vagrant to manage machines in Cloudstack."
   s.description   = "Enables Vagrant to manage machines in Cloudstack."
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "vagrant-cloudstack"
 
-  s.add_runtime_dependency "nokogiri", "~> 1.5.10"
-  s.add_runtime_dependency "fog", "~> 1.15.0"
+  s.add_runtime_dependency "fog", "~> 1.18.0"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec-core", "~> 2.12.2"

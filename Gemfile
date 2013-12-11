@@ -1,9 +1,5 @@
 source "https://rubygems.org"
 
-gem 'nokogiri', "= 1.5.10"
-gem 'fog', '= 1.15.0'
-gemspec
-
 group :development do
   # We depend on Vagrant for development, but we don't add it as a
   # gem dependency because we expect to be installed within the

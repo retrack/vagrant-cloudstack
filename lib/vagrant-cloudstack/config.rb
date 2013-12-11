@@ -8,6 +8,11 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :host
 
+      # Cloudstack api path.
+      #
+      # @return [String]
+      attr_accessor :path
+
       # Cloudstack api port.
       #
       # @return [String]
@@ -43,6 +48,11 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :network_id
 
+      # Network Type
+      #
+      # @return [String]
+      attr_accessor :network_type
+
       # Project uuid that the instance should belong to
       #
       # @return [String]
@@ -64,8 +74,29 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :zone_id
 
+      # The name of the keypair to use.
+      #
+      # @return [String]
+      attr_accessor :keypair
+
+      # IP address id to use for port forwarding rule
+      #
+      # @return [String]
+      attr_accessor :pf_ip_address_id
+
+      # public port to use for port forwarding rule
+      #
+      # @return [String]
+      attr_accessor :pf_public_port
+
+      # private port to use for port forwarding rule
+      #
+      # @return [String]
+      attr_accessor :pf_private_port
+
       def initialize(domain_specific=false)
         @host                   = UNSET_VALUE
+        @path                   = UNSET_VALUE
         @port                   = UNSET_VALUE
         @scheme                 = UNSET_VALUE
         @api_key                = UNSET_VALUE
@@ -73,10 +104,15 @@ module VagrantPlugins
         @instance_ready_timeout = UNSET_VALUE
         @domain_id              = UNSET_VALUE
         @network_id             = UNSET_VALUE
+        @network_type           = UNSET_VALUE
         @project_id             = UNSET_VALUE
         @service_offering_id    = UNSET_VALUE
         @template_id            = UNSET_VALUE
         @zone_id                = UNSET_VALUE
+        @keypair                = UNSET_VALUE
+        @pf_ip_address_id       = UNSET_VALUE
+        @pf_public_port         = UNSET_VALUE
+        @pf_private_port        = UNSET_VALUE
 
         # Internal state (prefix with __ so they aren't automatically
         # merged)
@@ -150,6 +186,9 @@ module VagrantPlugins
         # Domain_id must be nil, since we can't default that
         @host = nil if @host == UNSET_VALUE
 
+        # Path must be nil, since we can't default that
+        @path = nil if @path == UNSET_VALUE
+
         # Port must be nil, since we can't default that
         @port = nil if @port == UNSET_VALUE
 
@@ -171,6 +210,9 @@ module VagrantPlugins
         # Network uuid must be nil, since we can't default that
         @network_id = nil if @network_id == UNSET_VALUE
 
+        # NetworkType is 'Advanced' by default
+        @network_type = "Advanced" if @network_type == UNSET_VALUE
+
         # Project uuid must be nil, since we can't default that
         @project_id = nil if @project_id == UNSET_VALUE
 
@@ -182,6 +224,18 @@ module VagrantPlugins
 
         # Zone uuid must be nil, since we can't default that
         @zone_id = nil if @zone_id == UNSET_VALUE
+
+        # Keypair defaults to nil
+        @keypair = nil if @keypair == UNSET_VALUE
+
+        # IP address id must be nil, since we can't default that
+        @pf_ip_address_id = nil if @pf_ip_address_id == UNSET_VALUE
+
+        # Public port must be nil, since we can't default that
+        @pf_public_port = nil if @pf_public_port == UNSET_VALUE
+
+        # Private port must be nil, since we can't default that
+        @pf_private_port = nil if @pf_private_port == UNSET_VALUE
 
         # Compile our domain specific configurations only within
         # NON-DOMAIN-SPECIFIC configurations.
