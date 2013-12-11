@@ -2,6 +2,15 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.provider :cloudstack do |cs|
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.host = "ppapi.exoscale.ch"
+    cloudstack.path = "/compute"
+    cloudstack.port = "443"
+    cloudstack.scheme = "https"
+    cloudstack.template_id = "b87e5069-56a2-458e-886c-e6fdeed3d08c"
+    cloudstack.service_offering_id = "7c12e6df-6096-43e6-b9e4-3cb7b4e3f4c8"
+    cloudstack.network_id = "bd666a36-fe9d-4f2d-ab6f-088aedd204bd"
+    cloudstack.zone_id = "1747ef5e-5451-41fd-9f1a-58913bae9702"
+    cloudstack.network_type = "Basic"
   end
 end
